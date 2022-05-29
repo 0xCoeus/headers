@@ -9,7 +9,7 @@ struct Header {
 
 impl Header {
     fn new(input: String, character: char) -> Header {
-        let mut top_block = String::from("//");
+        let mut top_block = String::from("/*");
         let mut bottom_block = String::new();
 
         let mut i = 0;
@@ -19,7 +19,7 @@ impl Header {
             i += 1;
         }
 
-        bottom_block.push_str("//");
+        bottom_block.push_str("*/");
 
         let mut space = String::from("");
 

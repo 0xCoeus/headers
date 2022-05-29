@@ -9,27 +9,27 @@ struct Header {
 
 impl Header {
     fn new(input: String, character: char) -> Header {
-        let mut top_block = String::from("/*");
+        let mut top_block = String::from("//");
         let mut bottom_block = String::new();
 
         let mut i = 0;
-        while i < 62 {
+        while i < 64 {
             top_block.push(character);
             bottom_block.push(character);
             i += 1;
         }
 
-        bottom_block.push_str("*/");
+        bottom_block.push_str("//");
 
         let mut space = String::from("");
 
-        for _i in 1..(&top_block.len() - &input.len()) / 2 {
-            space.push_str(" ")
+        for _i in 1..(top_block.len() - input.len()) / 2 {
+            space.push(' ')
         }
 
         Header {
-            top_block: top_block,
-            bottom_block: bottom_block,
+            top_block,
+            bottom_block,
             padding: space,
             input: input.to_uppercase()
         }
@@ -42,7 +42,7 @@ fn main() {
     let input = &args[1];
     let character = &args[2];
 
-    let header = Header::new(input.to_string(), character.chars().nth(0).unwrap());
+    let header = Header::new(input.to_string(), character.chars().next().unwrap());
 
     println!("{}\n{}{}\n{}", header.top_block, header.padding, header.input, header.bottom_block);
 }

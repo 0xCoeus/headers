@@ -1,5 +1,7 @@
 use std::env;
 
+use clipboard::{ClipboardContext, ClipboardProvider};
+
 struct Header {
     top_block: String,
     bottom_block: String,
@@ -44,5 +46,12 @@ fn main() {
 
     let header = Header::new(input.to_string(), character.chars().next().unwrap());
 
-    println!("{}\n{}{}\n{}", header.top_block, header.padding, header.input, header.bottom_block);
+    let output = format!("{}\n{}{}\n{}", header.top_block, header.padding, header.input, header.bottom_block);
+
+    println!("{}", output);
+
+    let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
+
+    ctx.set_contents(output).unwrap(); // Copy the header to clipboard.    
+
 }
